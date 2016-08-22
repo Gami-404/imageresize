@@ -1,0 +1,18 @@
+{
+  "name": "smallunit/image",
+  "description": "image resize height ,width and quality",
+  "authors": [
+    {
+      "name": "Nils Adermann",
+      "email": "naderman@naderman.de",
+      "homepage": "http://www.naderman.de",
+      "role": "Developer"
+    }
+  ],
+  "license": "LGPL-3.0+",
+  "autoload": {
+    "psr-4": {
+      "Image\\": "image/"
+    }
+  }
+}
