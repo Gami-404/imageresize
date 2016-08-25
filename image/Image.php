@@ -74,8 +74,7 @@ class Image
         } catch (\Throwable $ex) {
             throw new Exception('version not found');
         }
-        $newPath = public_path((isset($version['path']) ? $version['path'] : $this->defaultPath) .
-            $version['suffix'] . '-' . pathinfo($originalPath, PATHINFO_BASENAME));
+        $newPath = $this->getVersionPath($versionName,$originalPath);
         $quality = (isset($version['quality']) ? $version['quality'] : $this->defaultQuality);
         $this->createImageResized($originalPath, $newPath, $version['height'], $version['width'], $quality);
     }
@@ -124,6 +123,23 @@ class Image
     public function suffix($versionName)
     {
         return $this->versions[$versionName]['suffix'];
+    }
+
+    /**
+     * @param $versionName
+     * @param $originalPath
+     * @return string path of the version will be created or been created
+     */
+    public function getVersionPath($versionName, $originalPath)
+    {
+        $version = '';
+        try {
+            $version = $this->versions[$versionName];
+        } catch (\Throwable $ex) {
+            throw new Exception('version not found');
+        }
+        return public_path((isset($version['path']) ? $version['path'] : $this->defaultPath) .
+            $version['suffix'] . '-' . pathinfo($originalPath, PATHINFO_BASENAME));
     }
 
 }
